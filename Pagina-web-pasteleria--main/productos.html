@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Pastelería Mil Sabores</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <div class="products-header">
+        <h1>Nuestros Productos</h1>
+        <p>Descubre nuestra amplia variedad de deliciosos postres y tortas</p>
+    </div>
+
+    <div class="categories-nav">
+        <div class="categories-container">
+            <button class="category-btn active" data-category="all">Todos</button>
+            <button class="category-btn" data-category="tortas-cuadradas">Tortas Cuadradas</button>
+            <button class="category-btn" data-category="tortas-circulares">Tortas Circulares</button>
+            <button class="category-btn" data-category="postres-individuales">Postres Individuales</button>
+            <button class="category-btn" data-category="sin-azucar">Sin Azúcar</button>
+            <button class="category-btn" data-category="tradicional">Tradicional</button>
+            <button class="category-btn" data-category="sin-gluten">Sin Gluten</button>
+            <button class="category-btn" data-category="vegana">Vegana</button>
+            <button class="category-btn" data-category="especiales">Tortas Especiales</button>
+        </div>
+    </div>
+
+    <div class="filter-section">
+        <select class="filter-select" id="sort-select">
+            <option value="default">Ordenar por</option>
+            <option value="price-asc">Precio: Menor a Mayor</option>
+            <option value="price-desc">Precio: Mayor a Menor</option>
+            <option value="name">Nombre A-Z</option>
+        </select>
+        
+        <select class="filter-select" id="size-filter">
+            <option value="all">Todos los tamaños</option>
+            <option value="pequeno">Pequeño</option>
+            <option value="mediano">Mediano</option>
+            <option value="grande">Grande</option>
+        </select>
+    </div>
+
+    <div class="products-container" id="products-grid">
+        <!-- Los productos se cargarán dinámicamente con JavaScript -->
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Base de datos de productos
+        const productos = [
+            {
+                id: 'TC001',
+                nombre: 'Torta Cuadrada de Chocolate',
+                categoria: 'tortas-cuadradas',
+                precio: 45000,
+                imagen: 'torta-chocolate.jpg',
+                descripcion: 'Deliciosa torta de chocolate con capas de ganache y un toque de avellanas. Personalizable con mensajes especiales.',
+                tamanos: ['mediano', 'grande']
+            },
+            {
+                id: 'TC002',
+                nombre: 'Torta Cuadrada de Frutas',
+                categoria: 'tortas-cuadradas',
+                precio: 50000,
+                imagen: 'torta-frutas.jpg',
+                descripcion: 'Una mezcla de frutas frescas y crema chantilly sobre un suave bizcocho de vainilla, ideal para celebraciones.',
+                tamanos: ['mediano', 'grande']
+            },
+            {
+                id: 'TT001',
+                nombre: 'Torta Circular de Vainilla',
+                categoria: 'tortas-circulares',
+                precio: 40000,
+                imagen: 'torta-vainilla.jpg',
+                descripcion: 'Bizcocho de vainilla clásico relleno con crema pastelera y cubierto con un glaseado dulce, perfecto para cualquier ocasión.',
+                tamanos: ['pequeno', 'mediano', 'grande']
+            },
+            {
+                id: 'TT002',
+                nombre: 'Torta Circular de Manjar',
+                categoria: 'tortas-circulares',
+                precio: 42000,
+                imagen: 'torta-manjar.jpg',
+                descripcion: 'Torta tradicional chilena con manjar y nueces, un deleite para los amantes de los sabores dulces y clásicos.',
+                tamanos: ['pequeno', 'mediano', 'grande']
+            },
+            {
+                id: 'PI001',
+                nombre: 'Mousse de Chocolate',
+                categoria: 'postres-individuales',
+                precio: 5000,
+                imagen: 'mousse-chocolate.jpg',
+                descripcion: 'Postre individual cremoso y suave, hecho con chocolate de alta calidad, ideal para los amantes del chocolate.',
+                tamanos: ['pequeno']
+            },
+            {
+                id: 'PI002',
+                nombre: 'Tiramisú Clásico',
+                categoria: 'postres-individuales',
+                precio: 5500,
+                imagen: 'tiramisu.jpg',
+                descripcion: 'Un postre italiano individual con capas de café, mascarpone y cacao, perfecto para finalizar cualquier comida.',
+                tamanos: ['pequeno']
+            },
+            {
+                id: 'PSA001',
+                nombre: 'Torta Sin Azúcar de Naranja',
+                categoria: 'sin-azucar',
+                precio: 48000,
+                imagen: 'torta-naranja.jpg',
+                descripcion: 'Torta ligera y deliciosa, endulzada naturalmente, ideal para quienes buscan opciones más saludables.',
+                tamanos: ['mediano', 'grande']
+            },
+            {
+                id: 'PSA002',
+                nombre: 'Cheesecake Sin Azúcar',
+                categoria: 'sin-azucar',
+                precio: 47000,
+                imagen: 'cheesecake.jpg',
+                descripcion: 'Suave y cremoso, este cheesecake es una opción perfecta para disfrutar sin culpa.',
+                tamanos: ['pequeno', 'mediano']
+            },
+            {
+                id: 'PT001',
+                nombre: 'Empanada de Manzana',
+                categoria: 'tradicional',
+                precio: 3000,
+                imagen: 'empanada-manzana.jpg',
+                descripcion: 'Pastelería tradicional rellena de manzanas especiadas, perfecta para un dulce desayuno o merienda.',
+                tamanos: ['pequeno']
+            },
+            {
+                id: 'PT002',
+                nombre: 'Tarta de Santiago',
+                categoria: 'tradicional',
+                precio: 6000,
+                imagen: 'tarta-santiago.jpg',
+                descripcion: 'Tradicional tarta española hecha con almendras, azúcar, y huevos, una delicia para los amantes de los postres clásicos.',
+                tamanos: ['pequeno', 'mediano']
+            },
+            {
+                id: 'PG001',
+                nombre: 'Brownie Sin Gluten',
+                categoria: 'sin-gluten',
+                precio: 4000,
+                imagen: 'brownie.jpg',
+                descripcion: 'Rico y denso, este brownie es perfecto para quienes necesitan evitar el gluten sin sacrificar el sabor.',
+                tamanos: ['pequeno']
+            },
+            {
+                id: 'PG002',
+                nombre: 'Pan Sin Gluten',
+                categoria: 'sin-gluten',
+                precio: 3500,
+                imagen: 'pan-sin-gluten.jpg',
+                descripcion: 'Suave y esponjoso, ideal para sándwiches o para acompañar cualquier comida.',
+                tamanos: ['pequeno']
+            },
+            {
+                id: 'PV001',
+                nombre: 'Torta Vegana de Chocolate',
+                categoria: 'vegana',
+                precio: 50000,
+                imagen: 'torta-vegana.jpg',
+                descripcion: 'Torta de chocolate húmeda y deliciosa, hecha sin productos de origen animal, perfecta para veganos.',
+                tamanos: ['mediano', 'grande']
+            },
+            {
+                id: 'PV002',
+                nombre: 'Galletas Veganas de Avena',
+                categoria: 'vegana',
+                precio: 4500,
+                imagen: 'galletas-avena.jpg',
+                descripcion: 'Crujientes y sabrosas, estas galletas son una excelente opción para un snack saludable y vegano.',
+                tamanos: ['pequeno']
+            },
+            {
+                id: 'TE001',
+                nombre: 'Torta Especial de Cumpleaños',
+                categoria: 'especiales',
+                precio: 55000,
+                imagen: 'torta-cumpleanos.jpg',
+                descripcion: 'Diseñada especialmente para celebraciones, personalizable con decoraciones y mensajes únicos.',
+                tamanos: ['mediano', 'grande']
+            },
+            {
+                id: 'TE002',
+                nombre: 'Torta Especial de Boda',
+                categoria: 'especiales',
+                precio: 60000,
+                imagen: 'torta-boda.jpg',
+                descripcion: 'Elegante y deliciosa, esta torta está diseñada para ser el centro de atención en cualquier boda.',
+                tamanos: ['grande']
+            }
+        ];
+
+        // variables globales
+        let productosFiltrados = [...productos];
+        let categoriaActual = 'all';
+        let tamanoFiltro = 'all';
+        let ordenActual = 'default'; 
+
+        //cargar productos al iniciar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarProductos();
+            configurarEventListeners();
+        });
+
+        // configurar event listeners para filtros y botones
+        function configurarEventListeners() {
+            // filtros por categoría
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    categoriaActual = this.getAttribute('data-category');
+                    aplicarFiltros();
+                });
+            });
+
+            // filtro de ordenamiento
+            document.getElementById('sort-select').addEventListener('change', function() {
+                ordenActual = this.value;
+                aplicarFiltros();
+            });
+
+            // filtro por tamaño
+            document.getElementById('size-filter').addEventListener('change', function() {
+                tamanoFiltro = this.value;
+                aplicarFiltros();
+            });
+        }
+
+        // cargar productos en la cuadrícula
+        function cargarProductos() {
+            const productsGrid = document.getElementById('products-grid');
+            productsGrid.innerHTML = '';
+
+            if (productosFiltrados.length === 0) {
+                productsGrid.innerHTML = '<div class="no-products">No se encontraron productos con los filtros seleccionados.</div>';
+                return;
+            }
+
+            productosFiltrados.forEach(producto => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="../img/productos/${producto.imagen}" alt="${producto.nombre}">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${producto.nombre}</h3>
+                        <p class="product-price">$${producto.precio.toLocaleString('es-CL')} CLP</p>
+                        <button class="add-to-cart" data-id="${producto.id}">Añadir al carrito</button>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+
+            // agregar event listeners a los botones de carrito
+            document.querySelectorAll('.add-to-cart').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-id');
+                    agregarAlCarrito(productId);
+                });
+            });
+        }
+
+        // aplicar todos los filtros
+        function aplicarFiltros() {
+            // filtrar por categoría
+            if (categoriaActual === 'all') {
+                productosFiltrados = [...productos];
+            } else {
+                productosFiltrados = productos.filter(p => p.categoria === categoriaActual);
+            }
+
+            // filtrar por tamaño
+            if (tamanoFiltro !== 'all') {
+                productosFiltrados = productosFiltrados.filter(p => p.tamanos.includes(tamanoFiltro));
+            }
+
+            // ordenar productos
+            switch(ordenActual) {
+                case 'price-asc':
+                    productosFiltrados.sort((a, b) => a.precio - b.precio);
+                    break;
+                case 'price-desc':
+                    productosFiltrados.sort((a, b) => b.precio - a.precio);
+                    break;
+                case 'name':
+                    productosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+                    break;
+                default:
+                    // orden por defecto (sin ordenar)
+                    break;
+            }
+
+            cargarProductos();
+        }
+
+        // función para agregar productos al carrito
+        function agregarAlCarrito(productId) {
+            const producto = productos.find(p => p.id === productId);
+            
+            // obtener carrito actual desde localstorage o inicializar uno nuevo
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            
+            // verificar si el producto ya está en el carrito
+            const itemExistente = carrito.find(item => item.id === productId);
+            
+            if (itemExistente) {
+                itemExistente.cantidad += 1;
+            } else {
+                carrito.push({
+                    id: producto.id,
+                    nombre: producto.nombre,
+                    precio: producto.precio,
+                    imagen: producto.imagen,
+                    cantidad: 1
+                });
+            }
+            
+            // guardar carrito actualizado en local
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            
+            // mostrar mensaje para  la  confirmación
+            alert(`¡${producto.nombre} añadido al carrito!`);
+            
+            // actualizar contador de carrito si es que esta
+            actualizarContadorCarrito();
+        }
+
+        // función para actualizar el contador del carrito
+        function actualizarContadorCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const totalItems = carrito.reduce((total, item) => total + item.cantidad, 0);
+            
+            // buscar elemento del contador 
+            const contadorCarrito = document.querySelector('.cart-count');
+            if (contadorCarrito) {
+                contadorCarrito.textContent = `(${totalItems})`;
+            }
+        }
+    </script>
+</body>
+</html>

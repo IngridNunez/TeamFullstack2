@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Pastelería Mil Sabores</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <div class="contact-header">
+        <h1>Contáctanos</h1>
+        <p>Estamos aquí para responder todas tus preguntas y tomar tus pedidos especiales</p>
+    </div>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Información de Contacto</h2>
+            
+            <div class="info-item">
+                <div class="info-icon">📍</div>
+                <div class="info-content">
+                    <h3>Dirección</h3>
+                    <p>Av. Dulce 1234, Santiago Centro<br>Región Metropolitana, Chile</p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">📞</div>
+                <div class="info-content">
+                    <h3>Teléfonos</h3>
+                    <p>+56 2 2345 6789<br>+56 9 8765 4321</p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">✉️</div>
+                <div class="info-content">
+                    <h3>Email</h3>
+                    <p>info@pasteleriamilsabores.cl<br>pedidos@pasteleriamilsabores.cl</p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">🕒</div>
+                <div class="info-content">
+                    <h3>Horario de Atención</h3>
+                    <p>Lunes a Viernes: 9:00 - 20:00 hrs<br>Sábados: 10:00 - 18:00 hrs<br>Domingos: Cerrado</p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">🔗</div>
+                <div class="info-content">
+                    <h3>Síguenos en redes</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+
+
+                        <a href="#" class="social-link">Instagram</a>
+                        
+
+                        <a href="#" class="social-link">X</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-form">
+            <h2>Envíanos un mensaje</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Nombre completo *</label>
+                    <input type="text" id="name" class="form-control" required>
+                    <div class="error-message" id="name-error">Por favor ingresa tu nombre</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correo electrónico *</label>
+                    <input type="email" id="email" class="form-control" required>
+                    <div class="error-message" id="email-error">Por favor ingresa un email válido</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Asunto *</label>
+                    <select id="subject" class="form-control" required>
+                        <option value="">Selecciona un asunto</option>
+                        <option value="consulta">Consulta general</option>
+                        <option value="pedido">Realizar pedido</option>
+                        <option value="personalizado">Pedido personalizado</option>
+                        <option value="queja">Queja o reclamo</option>
+                        <option value="otros">Otros</option>
+                    </select>
+                    <div class="error-message" id="subject-error">Por favor selecciona un asunto</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Mensaje *</label>
+                    <textarea id="message" class="form-control" required></textarea>
+                    <div class="error-message" id="message-error">Por favor ingresa tu mensaje</div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Enviar mensaje</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="map-container">
+        <h2>Nuestra Ubicación</h2>
+        <div class="map-frame">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.395036846736!2d-70.6500003242681!3d-33.44310797367225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5a5a0a
