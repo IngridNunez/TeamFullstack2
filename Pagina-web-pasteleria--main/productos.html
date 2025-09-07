@@ -4,352 +4,513 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos - Pastelería Mil Sabores</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-
+    <style>
+        :root {
+            --primary-color: #d63384;
+            --secondary-color: #6f42c1;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            padding-top: 76px;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        .brand-text, h1, h2, h3, h4, h5 {
+            font-family: 'Pacifico', cursive;
+            color: var(--primary-color);
+        }
+        
+        .products-header {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://placehold.co/1200x400/f8d7da/ffffff?text=Pastelería+Mil+Sabores') center/cover no-repeat;
+            padding: 4rem 0;
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img {
+            height: 220px;
+            object-fit: cover;
+        }
+        
+        .price {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .category-btn {
+            border-radius: 20px;
+            padding: 0.5rem 1.2rem;
+            margin: 0.2rem;
+            transition: all 0.3s;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 20px;
+            padding: 0.5rem 1.5rem;
+        }
+        
+        .btn-primary:hover {
+            background-color: #b02a6e;
+            border-color: #b02a6e;
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .footer {
+            background-color: var(--light-color);
+            padding: 3rem 0;
+        }
+        
+        .social-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .social-link:hover {
+            text-decoration: underline;
+            color: #b02a6e;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #495057;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .breadcrumb-section {
+            background-color: var(--light-color);
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--primary-color);
+        }
+        
+        .custom-navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+        }
+        
+        .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+        
+        .cart-count {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            padding: 0.1rem 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        .filter-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .form-select {
+            border-radius: 20px;
+            padding: 0.5rem 1.5rem;
+        }
+        
+        .quantity-btn {
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .size-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+    </style>
 </head>
 <body>
-    <div id="header-placeholder"></div>
-
-    <div class="products-header">
-        <h1>Nuestros Productos</h1>
-        <p>Descubre nuestra amplia variedad de deliciosos postres y tortas</p>
-    </div>
-
-    <div class="categories-nav">
-        <div class="categories-container">
-            <button class="category-btn active" data-category="all">Todos</button>
-            <button class="category-btn" data-category="tortas-cuadradas">Tortas Cuadradas</button>
-            <button class="category-btn" data-category="tortas-circulares">Tortas Circulares</button>
-            <button class="category-btn" data-category="postres-individuales">Postres Individuales</button>
-            <button class="category-btn" data-category="sin-azucar">Sin Azúcar</button>
-            <button class="category-btn" data-category="tradicional">Tradicional</button>
-            <button class="category-btn" data-category="sin-gluten">Sin Gluten</button>
-            <button class="category-btn" data-category="vegana">Vegana</button>
-            <button class="category-btn" data-category="especiales">Tortas Especiales</button>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Pastelería Mil Sabores</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="productos.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nosotros.html">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link cart-link" href="#">
+                            Carrito <span class="cart-count">(0)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="filter-section">
-        <select class="filter-select" id="sort-select">
-            <option value="default">Ordenar por</option>
-            <option value="price-asc">Precio: Menor a Mayor</option>
-            <option value="price-desc">Precio: Mayor a Menor</option>
-            <option value="name">Nombre A-Z</option>
-        </select>
-        
-        <select class="filter-select" id="size-filter">
-            <option value="all">Todos los tamaños</option>
-            <option value="pequeno">Pequeño</option>
-            <option value="mediano">Mediano</option>
-            <option value="grande">Grande</option>
-        </select>
-    </div>
+    <!-- Header -->
+    <section class="products-header py-5 mt-5">
+        <div class="container text-center">
+            <h1 class="display-4">Nuestros Productos</h1>
+            <p class="lead">Descubre nuestra amplia variedad de deliciosos postres y tortas</p>
+        </div>
+    </section>
 
-    <div class="products-container" id="products-grid">
-        <!-- Los productos se cargarán dinámicamente con JavaScript -->
-    </div>
+    <!-- Categories Navigation -->
+    <section class="categories-nav py-3 bg-light">
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <button class="btn btn-outline-primary category-btn active" data-category="all">Todos</button>
+                <button class="btn btn-outline-primary category-btn" data-category="tortas-cuadradas">Tortas Cuadradas</button>
+                <button class="btn btn-outline-primary category-btn" data-category="tortas-circulares">Tortas Circulares</button>
+                <button class="btn btn-outline-primary category-btn" data-category="postres-individuales">Postres Individuales</button>
+                <button class="btn btn-outline-primary category-btn" data-category="sin-azucar">Sin Azúcar</button>
+                <button class="btn btn-outline-primary category-btn" data-category="tradicional">Tradicional</button>
+                <button class="btn btn-outline-primary category-btn" data-category="sin-gluten">Sin Gluten</button>
+                <button class="btn btn-outline-primary category-btn" data-category="vegana">Vegana</button>
+                <button class="btn btn-outline-primary category-btn" data-category="especiales">Tortas Especiales</button>
+            </div>
+        </div>
+    </section>
 
-    <div id="footer-placeholder"></div>
+    <!-- Filters -->
+    <section class="filter-section py-3">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-3 mb-2">
+                    <select class="form-select" id="sort-select">
+                        <option value="default">Ordenar por</option>
+                        <option value="price-asc">Precio: Menor a Mayor</option>
+                        <option value="price-desc">Precio: Mayor a Menor</option>
+                        <option value="name">Nombre A-Z</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <select class="form-select" id="size-filter">
+                        <option value="all">Todos los tamaños</option>
+                        <option value="pequeno">Pequeño</option>
+                        <option value="mediano">Mediano</option>
+                        <option value="grande">Grande</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Products Grid -->
+    <section class="products-container py-5">
+        <div class="container">
+            <div class="row" id="products-grid">
+                <!-- Producto 1 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="tortas-cuadradas tradicional">
+                    <div class="card product-card h-100">
+                        <img src="https://placehold.co/600x400/f8d7da/ffffff?text=Torta+Chocolate" class="card-img-top product-img" alt="Torta de Chocolate">
+                        <div class="card-body">
+                            <h5 class="card-title">Torta de Chocolate</h5>
+                            <p class="card-text">Deliciosa torta de chocolate con relleno de crema y cubierta de ganache.</p>
+                            <p class="price">$15.000</p>
+                            <a href="detalle-producto.html?product=torta-chocolate" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 2 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="tortas-circulares tradicional">
+                    <div class="card product-card h-100">
+                        <img src="https://placehold.co/600x400/d1ecf1/000000?text=Torta+Frutal" class="card-img-top product-img" alt="Torta Frutal">
+                        <div class="card-body">
+                            <h5 class="card-title">Torta Frutal</h5>
+                            <p class="card-text">Torta esponjosa con crema y decorada con variedad de frutas frescas de la estación.</p>
+                            <p class="price">$18.000</p>
+                            <a href="detalle-producto.html?product=torta-frutal" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 3 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="tortas-circulares especiales">
+                    <div class="card product-card h-100">
+                        <img src="https://placehold.co/600x400/e2e3e5/000000?text=Red+Velvet" class="card-img-top product-img" alt="Torta Red Velvet">
+                        <div class="card-body">
+                            <h5 class="card-title">Torta Red Velvet</h5>
+                            <p class="card-text">Clásica torta roja con sabor a vainilla y chocolate, cubierta con frosting de queso crema.</p>
+                            <p class="price">$20.000</p>
+                            <a href="detalle-producto.html?product=red-velvet" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 4 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="tortas-cuadradas sin-azucar">
+                    <div class="card product-card h-100">
+                        <img src="https://placehold.co/600x400/d4edda/000000?text=Torta+Sin+Azúcar" class="card-img-top product-img" alt="Torta Sin Azúcar">
+                        <div class="card-body">
+                            <h5 class="card-title">Torta Sin Azúcar</h5>
+                            <p class="card-text">Exquisita torta endulzada naturalmente, ideal para personas con restricciones de azúcar.</p>
+                            <p class="price">$16.500</p>
+                            <a href="detalle-producto.html?product=torta-sin-azucar" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 5 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="tortas-circulares sin-gluten">
+                    <div class="card product-card h-100">
+                        <img src="https://placehold.co/600x400/fff3cd/000000?text=Torta+Sin+Gluten" class="card-img-top product-img" alt="Torta Sin Gluten">
+                        <div class="card-body">
+                            <h5 class="card-title">Torta Sin Gluten</h5>
+                            <p class="card-text">Deliciosa opción para celíacos, elaborada con harinas alternativas y mismo sabor exquisito.</p>
+                            <p class="price">$19.000</p>
+                            <a href="detalle-producto.html?product=torta-sin-gluten" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 6 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="vegana tortas-circulares">
+                    <div class="card product-card h-100">
+                        <img src="https://placehold.co/600x400/cce5ff/000000?text=Torta+Vegana" class="card-img-top product-img" alt="Torta Vegana">
+                        <div class="card-body">
+                            <h5 class="card-title">Torta Vegana</h5>
+                            <p class="card-text">Elaborada sin productos de origen animal, pero con todo el sabor de una torta tradicional.</p>
+                            <p class="price">$17.500</p>
+                            <a href="detalle-producto.html?product=torta-vegana" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 7 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="postres-individuales">
+                    <div class="card product-card h-100">
+                        <img src="https://placehold.co/600x400/f8d7da/000000?text=Cheesecake+Individual" class="card-img-top product-img" alt="Cheesecake Individual">
+                        <div class="card-body">
+                            <h5 class="card-title">Cheesecake Individual</h5>
+                            <p class="card-text">Porción individual de cheesecake con base de galleta y topping de frutos rojos.</p>
+                            <p class="price">$5.000</p>
+                            <a href="detalle-producto.html?product=cheesecake" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 8 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="postres-individuales">
+                    <div class="card product-card h-100">
+                        <img src="https://placehold.co/600x400/d1ecf1/000000?text=Brownie" class="card-img-top product-img" alt="Brownie">
+                        <div class="card-body">
+                            <h5 class="card-title">Brownie de Chocolate</h5>
+                            <p class="card-text">Brownie intenso de chocolate con nueces, disponible en porción individual o familiar.</p>
+                            <p class="price">$4.500</p>
+                            <a href="detalle-producto.html?product=brownie" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 9 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="tortas-especiales">
+                    <div class="card product-card h-100">
+                        <img src="https://placehold.co/600x400/e2e3e5/000000?text=Torta+Personalizada" class="card-img-top product-img" alt="Torta Personalizada">
+                        <div class="card-body">
+                            <h5 class="card-title">Torta Personalizada</h5>
+                            <p class="card-text">Creamos la torta de tus sueños para tu ocasión especial. Consultar por diseños.</p>
+                            <p class="price">$25.000+</p>
+                            <a href="detalle-producto.html?product=torta-personalizada" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 10 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="tradicional tortas-cuadradas">
+                    <div class="card product-card h-100">
+                        <img src="https://placehold.co/600x400/d4edda/000000?text=Torta+Tres+Leches" class="card-img-top product-img" alt="Torta Tres Leches">
+                        <div class="card-body">
+                            <h5 class="card-title">Torta Tres Leches</h5>
+                            <p class="card-text">Clásica torta bañada en mezcla de tres leches y decorada con merengue o crema chantillí.</p>
+                            <p class="price">$16.000</p>
+                            <a href="detalle-producto.html?product=torta-tres-leches" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 11 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="tradicional tortas-circulares">
+                    <div class="card product-card h-100">
+                        <img src="https://placehold.co/600x400/fff3cd/000000?text=Torta+de+Zanahoria" class="card-img-top product-img" alt="Torta de Zanahoria">
+                        <div class="card-body">
+                            <h5 class="card-title">Torta de Zanahoria</h5>
+                            <p class="card-text">Húmeda torta de zanahoria con especias, nueces y cubierta de frosting de queso crema.</p>
+                            <p class="price">$17.000</p>
+                            <a href="detalle-producto.html?product=torta-zanahoria" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 12 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="postres-individuales">
+                    <div class="card product-card h-100">
+                        <img src="https://placehold.co/600x400/cce5ff/000000?text=Tiramisú" class="card-img-top product-img" alt="Tiramisú">
+                        <div class="card-body">
+                            <h5 class="card-title">Tiramisú Individual</h5>
+                            <p class="card-text">Clásico postre italiano en porción individual, con café, cacao y queso mascarpone.</p>
+                            <p class="price">$6.000</p>
+                            <a href="detalle-producto.html?product=tiramisu" class="btn btn-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4>Pastelería Mil Sabores</h4>
+                    <p>50 años endulzando momentos especiales con las mejores recetas tradicionales y modernas de la repostería chilena.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">Twitter</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4>Contacto</h4>
+                    <p>Av. Dulce 1234, Santiago Centro<br>
+                    Región Metropolitana, Chile</p>
+                    <p>Teléfono: +56 2 2345 6789<br>
+                    Email: info@pasteleriamilsabores.cl</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="copyright">&copy; 2025 Pastelería Mil Sabores. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS para filtros -->
     <script>
-        // Base de datos de productos
-        const productos = [
-            {
-                id: 'TC001',
-                nombre: 'Torta Cuadrada de Chocolate',
-                categoria: 'tortas-cuadradas',
-                precio: 45000,
-                imagen: 'torta-chocolate.jpg',
-                descripcion: 'Deliciosa torta de chocolate con capas de ganache y un toque de avellanas. Personalizable con mensajes especiales.',
-                tamanos: ['mediano', 'grande']
-            },
-            {
-                id: 'TC002',
-                nombre: 'Torta Cuadrada de Frutas',
-                categoria: 'tortas-cuadradas',
-                precio: 50000,
-                imagen: 'torta-frutas.jpg',
-                descripcion: 'Una mezcla de frutas frescas y crema chantilly sobre un suave bizcocho de vainilla, ideal para celebraciones.',
-                tamanos: ['mediano', 'grande']
-            },
-            {
-                id: 'TT001',
-                nombre: 'Torta Circular de Vainilla',
-                categoria: 'tortas-circulares',
-                precio: 40000,
-                imagen: 'torta-vainilla.jpg',
-                descripcion: 'Bizcocho de vainilla clásico relleno con crema pastelera y cubierto con un glaseado dulce, perfecto para cualquier ocasión.',
-                tamanos: ['pequeno', 'mediano', 'grande']
-            },
-            {
-                id: 'TT002',
-                nombre: 'Torta Circular de Manjar',
-                categoria: 'tortas-circulares',
-                precio: 42000,
-                imagen: 'torta-manjar.jpg',
-                descripcion: 'Torta tradicional chilena con manjar y nueces, un deleite para los amantes de los sabores dulces y clásicos.',
-                tamanos: ['pequeno', 'mediano', 'grande']
-            },
-            {
-                id: 'PI001',
-                nombre: 'Mousse de Chocolate',
-                categoria: 'postres-individuales',
-                precio: 5000,
-                imagen: 'mousse-chocolate.jpg',
-                descripcion: 'Postre individual cremoso y suave, hecho con chocolate de alta calidad, ideal para los amantes del chocolate.',
-                tamanos: ['pequeno']
-            },
-            {
-                id: 'PI002',
-                nombre: 'Tiramisú Clásico',
-                categoria: 'postres-individuales',
-                precio: 5500,
-                imagen: 'tiramisu.jpg',
-                descripcion: 'Un postre italiano individual con capas de café, mascarpone y cacao, perfecto para finalizar cualquier comida.',
-                tamanos: ['pequeno']
-            },
-            {
-                id: 'PSA001',
-                nombre: 'Torta Sin Azúcar de Naranja',
-                categoria: 'sin-azucar',
-                precio: 48000,
-                imagen: 'torta-naranja.jpg',
-                descripcion: 'Torta ligera y deliciosa, endulzada naturalmente, ideal para quienes buscan opciones más saludables.',
-                tamanos: ['mediano', 'grande']
-            },
-            {
-                id: 'PSA002',
-                nombre: 'Cheesecake Sin Azúcar',
-                categoria: 'sin-azucar',
-                precio: 47000,
-                imagen: 'cheesecake.jpg',
-                descripcion: 'Suave y cremoso, este cheesecake es una opción perfecta para disfrutar sin culpa.',
-                tamanos: ['pequeno', 'mediano']
-            },
-            {
-                id: 'PT001',
-                nombre: 'Empanada de Manzana',
-                categoria: 'tradicional',
-                precio: 3000,
-                imagen: 'empanada-manzana.jpg',
-                descripcion: 'Pastelería tradicional rellena de manzanas especiadas, perfecta para un dulce desayuno o merienda.',
-                tamanos: ['pequeno']
-            },
-            {
-                id: 'PT002',
-                nombre: 'Tarta de Santiago',
-                categoria: 'tradicional',
-                precio: 6000,
-                imagen: 'tarta-santiago.jpg',
-                descripcion: 'Tradicional tarta española hecha con almendras, azúcar, y huevos, una delicia para los amantes de los postres clásicos.',
-                tamanos: ['pequeno', 'mediano']
-            },
-            {
-                id: 'PG001',
-                nombre: 'Brownie Sin Gluten',
-                categoria: 'sin-gluten',
-                precio: 4000,
-                imagen: 'brownie.jpg',
-                descripcion: 'Rico y denso, este brownie es perfecto para quienes necesitan evitar el gluten sin sacrificar el sabor.',
-                tamanos: ['pequeno']
-            },
-            {
-                id: 'PG002',
-                nombre: 'Pan Sin Gluten',
-                categoria: 'sin-gluten',
-                precio: 3500,
-                imagen: 'pan-sin-gluten.jpg',
-                descripcion: 'Suave y esponjoso, ideal para sándwiches o para acompañar cualquier comida.',
-                tamanos: ['pequeno']
-            },
-            {
-                id: 'PV001',
-                nombre: 'Torta Vegana de Chocolate',
-                categoria: 'vegana',
-                precio: 50000,
-                imagen: 'torta-vegana.jpg',
-                descripcion: 'Torta de chocolate húmeda y deliciosa, hecha sin productos de origen animal, perfecta para veganos.',
-                tamanos: ['mediano', 'grande']
-            },
-            {
-                id: 'PV002',
-                nombre: 'Galletas Veganas de Avena',
-                categoria: 'vegana',
-                precio: 4500,
-                imagen: 'galletas-avena.jpg',
-                descripcion: 'Crujientes y sabrosas, estas galletas son una excelente opción para un snack saludable y vegano.',
-                tamanos: ['pequeno']
-            },
-            {
-                id: 'TE001',
-                nombre: 'Torta Especial de Cumpleaños',
-                categoria: 'especiales',
-                precio: 55000,
-                imagen: 'torta-cumpleanos.jpg',
-                descripcion: 'Diseñada especialmente para celebraciones, personalizable con decoraciones y mensajes únicos.',
-                tamanos: ['mediano', 'grande']
-            },
-            {
-                id: 'TE002',
-                nombre: 'Torta Especial de Boda',
-                categoria: 'especiales',
-                precio: 60000,
-                imagen: 'torta-boda.jpg',
-                descripcion: 'Elegante y deliciosa, esta torta está diseñada para ser el centro de atención en cualquier boda.',
-                tamanos: ['grande']
-            }
-        ];
-
-        // variables globales
-        let productosFiltrados = [...productos];
-        let categoriaActual = 'all';
-        let tamanoFiltro = 'all';
-        let ordenActual = 'default'; 
-
-        //cargar productos al iniciar la página
         document.addEventListener('DOMContentLoaded', function() {
-            cargarProductos();
-            configurarEventListeners();
-        });
-
-        // configurar event listeners para filtros y botones
-        function configurarEventListeners() {
-            // filtros por categoría
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            // Filtrado por categorías
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Quitar clase active de todos los botones
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    // Agregar clase active al botón clickeado
                     this.classList.add('active');
                     
-                    categoriaActual = this.getAttribute('data-category');
-                    aplicarFiltros();
+                    const category = this.getAttribute('data-category');
+                    
+                    // Mostrar u ocultar productos según la categoría
+                    productCards.forEach(card => {
+                        const productCategories = card.parentElement.getAttribute('data-category');
+                        
+                        if (category === 'all' || productCategories.includes(category)) {
+                            card.parentElement.style.display = 'block';
+                        } else {
+                            card.parentElement.style.display = 'none';
+                        }
+                    });
                 });
             });
-
-            // filtro de ordenamiento
-            document.getElementById('sort-select').addEventListener('change', function() {
-                ordenActual = this.value;
-                aplicarFiltros();
+            
+            // Filtrado por tamaño (simulado)
+            const sizeFilter = document.getElementById('size-filter');
+            sizeFilter.addEventListener('change', function() {
+                // En una implementación real, aquí filtrarías por tamaño
+                console.log('Filtrando por tamaño:', this.value);
             });
-
-            // filtro por tamaño
-            document.getElementById('size-filter').addEventListener('change', function() {
-                tamanoFiltro = this.value;
-                aplicarFiltros();
+            
+            // Ordenamiento
+            const sortSelect = document.getElementById('sort-select');
+            sortSelect.addEventListener('change', function() {
+                // En una implementación real, aquí ordenarías los productos
+                console.log('Ordenando por:', this.value);
             });
-        }
-
-        // cargar productos en la cuadrícula
-        function cargarProductos() {
-            const productsGrid = document.getElementById('products-grid');
-            productsGrid.innerHTML = '';
-
-            if (productosFiltrados.length === 0) {
-                productsGrid.innerHTML = '<div class="no-products">No se encontraron productos con los filtros seleccionados.</div>';
-                return;
-            }
-
-            productosFiltrados.forEach(producto => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                productCard.innerHTML = `
-                    <div class="product-image">
-                        <img src="../img/productos/${producto.imagen}" alt="${producto.nombre}">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">${producto.nombre}</h3>
-                        <p class="product-price">$${producto.precio.toLocaleString('es-CL')} CLP</p>
-                        <button class="add-to-cart" data-id="${producto.id}">Añadir al carrito</button>
-                    </div>
-                `;
-                productsGrid.appendChild(productCard);
-            });
-
-            // agregar event listeners a los botones de carrito
-            document.querySelectorAll('.add-to-cart').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const productId = this.getAttribute('data-id');
-                    agregarAlCarrito(productId);
-                });
-            });
-        }
-
-        // aplicar todos los filtros
-        function aplicarFiltros() {
-            // filtrar por categoría
-            if (categoriaActual === 'all') {
-                productosFiltrados = [...productos];
-            } else {
-                productosFiltrados = productos.filter(p => p.categoria === categoriaActual);
-            }
-
-            // filtrar por tamaño
-            if (tamanoFiltro !== 'all') {
-                productosFiltrados = productosFiltrados.filter(p => p.tamanos.includes(tamanoFiltro));
-            }
-
-            // ordenar productos
-            switch(ordenActual) {
-                case 'price-asc':
-                    productosFiltrados.sort((a, b) => a.precio - b.precio);
-                    break;
-                case 'price-desc':
-                    productosFiltrados.sort((a, b) => b.precio - a.precio);
-                    break;
-                case 'name':
-                    productosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
-                    break;
-                default:
-                    // orden por defecto (sin ordenar)
-                    break;
-            }
-
-            cargarProductos();
-        }
-
-        // función para agregar productos al carrito
-        function agregarAlCarrito(productId) {
-            const producto = productos.find(p => p.id === productId);
-            
-            // obtener carrito actual desde localstorage o inicializar uno nuevo
-            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-            
-            // verificar si el producto ya está en el carrito
-            const itemExistente = carrito.find(item => item.id === productId);
-            
-            if (itemExistente) {
-                itemExistente.cantidad += 1;
-            } else {
-                carrito.push({
-                    id: producto.id,
-                    nombre: producto.nombre,
-                    precio: producto.precio,
-                    imagen: producto.imagen,
-                    cantidad: 1
-                });
-            }
-            
-            // guardar carrito actualizado en local
-            localStorage.setItem('carrito', JSON.stringify(carrito));
-            
-            // mostrar mensaje para  la  confirmación
-            alert(`¡${producto.nombre} añadido al carrito!`);
-            
-            // actualizar contador de carrito si es que esta
-            actualizarContadorCarrito();
-        }
-
-        // función para actualizar el contador del carrito
-        function actualizarContadorCarrito() {
-            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-            const totalItems = carrito.reduce((total, item) => total + item.cantidad, 0);
-            
-            // buscar elemento del contador 
-            const contadorCarrito = document.querySelector('.cart-count');
-            if (contadorCarrito) {
-                contadorCarrito.textContent = `(${totalItems})`;
-            }
-        }
+        });
     </script>
 </body>
 </html>
