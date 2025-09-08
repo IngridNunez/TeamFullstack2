@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - Pastelería Mil Sabores</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #d63384;
+            --secondary-color: #6f42c1;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            padding-top: 76px;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        .brand-text, h1, h2, h3, h4, h5 {
+            font-family: 'Pacifico', cursive;
+            color: var(--primary-color);
+        }
+        
+        .custom-navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+        }
+        
+        .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+        
+        .cart-count {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            padding: 0.1rem 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        .breadcrumb-section {
+            background-color: var(--light-color);
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 20px;
+            padding: 0.5rem 1.5rem;
+        }
+        
+        .btn-primary:hover {
+            background-color: #b02a6e;
+            border-color: #b02a6e;
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .footer {
+            background-color: var(--light-color);
+            padding: 3rem 0;
+        }
+        
+        .social-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .social-link:hover {
+            text-decoration: underline;
+            color: #b02a6e;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #495057;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .cart-item {
+            border-bottom: 1px solid #eee;
+            padding: 1.5rem 0;
+        }
+        
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .quantity-btn {
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 3rem;
+        }
+        
+        .empty-cart-icon {
+            font-size: 4rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+        
+        .summary-card {
+            background-color: var(--light-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Pastelería Mil Sabores</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="productos.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nosotros.html">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active cart-link" href="carrito.html">
+                            Carrito <span class="cart-count" id="navbar-cart-count">(0)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-section py-3 mt-5">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+                    <li class="breadcrumb-item active">Carrito de Compras</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Cart Content -->
+    <section class="cart-content py-5">
+        <div class="container">
+            <h1 class="mb-4">Tu Carrito de Compras</h1>
+            
+            <div class="row">
+                <div class="col-lg-8">
+                    <div id="cart-items-container">
+                        <!-- Los elementos del carrito se cargarán dinámicamente -->
+                    </div>
+                    
+                    <div id="empty-cart-message" class="empty-cart d-none">
+                        <div class="empty-cart-icon">🛒</div>
+                        <h3>Tu carrito está vacío</h3>
+                        <p>Agrega algunos productos deliciosos para comenzar</p>
+                        <a href="productos.html" class="btn btn-primary mt-3">Ver Productos</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="summary-card">
+                        <h3 class="mb-4">Resumen de Compra</h3>
+                        
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">$0</span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Envío:</span>
+                            <span id="shipping">$0</span>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="d-flex justify-content-between mb-4">
+                            <strong>Total:</strong>
+                            <strong id="total">$0</strong>
+                        </div>
+                        
+                        <button id="checkout-btn" class="btn btn-primary w-100" disabled>Proceder al Pago</button>
+                        
+                        <div class="mt-3 text-center">
+                            <a href="productos.html" class="text-decoration-none">← Continuar comprando</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4>Pastelería Mil Sabores</h4>
+                    <p>50 años endulzando momentos especiales con las mejores recetas tradicionales y modernas de la repostería chilena.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">Twitter</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4>Contacto</h4>
+                    <p>Av. Dulce 1234, Santiago Centro<br>
+                    Región Metropolitana, Chile</p>
+                    <p>Teléfono: +56 2 2345 6789<br>
+                    Email: info@pasteleriamilsabores.cl</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="copyright">&copy; 2023 Pastelería Mil Sabores. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Carrito JS -->
+    <script>
+        // Base de datos de productos (simulada)
+        const products = {
+            'torta-chocolate': {
+                id: 'torta-chocolate',
+                title: 'Torta de Chocolate',
+                price: 15000,
+                description: 'Deliciosa torta de chocolate con relleno de crema y cubierta de ganache.',
+                image: 'https://placehold.co/600x400/f8d7da/ffffff?text=Torta+Chocolate'
+            },
+            'torta-frutal': {
+                id: 'torta-frutal',
+                title: 'Torta Frutal',
+                price: 18000,
+                description: 'Torta esponjosa con crema y decorada con variedad de frutas frescas de la estación.',
+                image: 'https://placehold.co/600x400/d1ecf1/000000?text=Torta+Frutal'
+            },
+            'red-velvet': {
+                id: 'red-velvet',
+                title: 'Torta Red Velvet',
+                price: 20000,
+                description: 'Clásica torta roja con sabor a vainilla y chocolate, cubierta con frosting de queso crema.',
+                image: 'https://placehold.co/600x400/e2e3e5/000000?text=Red+Velvet'
+            },
+            'torta-sin-azucar': {
+                id: 'torta-sin-azucar',
+                title: 'Torta Sin Azúcar',
+                price: 16500,
+                description: 'Exquisita torta endulzada naturalmente, ideal para personas con restricciones de azúcar.',
+                image: 'https://placehold.co/600x400/d4edda/000000?text=Torta+Sin+Azúcar'
+            },
+            'torta-sin-gluten': {
+                id: 'torta-sin-gluten',
+                title: 'Torta Sin Gluten',
+                price: 19000,
+                description: 'Deliciosa opción para celíacos, elaborada con harinas alternativas y mismo sabor exquisito.',
+                image: 'https://placehold.co/600x400/fff3cd/000000?text=Torta+Sin+Gluten'
+            },
+            'torta-vegana': {
+                id: 'torta-vegana',
+                title: 'Torta Vegana',
+                price: 17500,
+                description: 'Elaborada sin productos de origen animal, pero con todo el sabor de una torta tradicional.',
+                image: 'https://placehold.co/600x400/cce5ff/000000?text=Torta+Vegana'
+            },
+            'cheesecake': {
+                id: 'cheesecake',
+                title: 'Cheesecake Individual',
+                price: 5000,
+                description: 'Porción individual de cheesecake con base de galleta y topping de frutos rojos.',
+                image: 'https://placehold.co/600x400/f8d7da/000000?text=Cheesecake+Individual'
+            },
+            'brownie': {
+                id: 'brownie',
+                title: 'Brownie de Chocolate',
+                price: 4500,
+                description: 'Brownie intenso de chocolate con nueces, disponible en porción individual o familiar.',
+                image: 'https://placehold.co/600x400/d1ecf1/000000?text=Brownie'
+            },
+            'torta-personalizada': {
+                id: 'torta-personalizada',
+                title: 'Torta Personalizada',
+                price: 25000,
+                description: 'Creamos la torta de tus sueños para tu ocasión especial. Consultar por diseños y precios según complejidad.',
+                image: 'https://placehold.co/600x400/e2e3e5/000000?text=Torta+Personalizada'
+            },
+            'torta-tres-leches': {
+                id: 'torta-tres-leches',
+                title: 'Torta Tres Leches',
+                price: 16000,
+                description: 'Clásica torta bañada en mezcla de tres leches y decorada con merengue o crema chantillí.',
+                image: 'https://placehold.co/600x400/d4edda/000000?text=Torta+Tres+Leches'
+            },
+            'torta-zanahoria': {
+                id: 'torta-zanahoria',
+                title: 'Torta de Zanahoria',
+                price: 17000,
+                description: 'Húmeda torta de zanahoria con especias, nueces y cubierta de frosting de queso crema.',
+                image: 'https://placehold.co/600x400/fff3cd/000000?text=Torta+de+Zanahoria'
+            },
+            'tiramisu': {
+                id: 'tiramisu',
+                title: 'Tiramisú Individual',
+                price: 6000,
+                description: 'Clásico postre italiano en porción individual, con café, cacao y queso mascarpone.',
+                image: 'https://placehold.co/600x400/cce5ff/000000?text=Tiramisú'
+            }
+        };
+
+        // Funciones del carrito
+        function getCart() {
+            const cart = localStorage.getItem('cart');
+            return cart ? JSON.parse(cart) : [];
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            const cart = getCart();
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('navbar-cart-count').textContent = `(${totalItems})`;
+        }
+
+        function renderCartItems() {
+            const cart = getCart();
+            const cartContainer = document.getElementById('cart-items-container');
+            const emptyCartMessage = document.getElementById('empty-cart-message');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '';
+                emptyCartMessage.classList.remove('d-none');
+                checkoutBtn.disabled = true;
+                updateSummary(0);
+                return;
+            }
+            
+            emptyCartMessage.classList.add('d-none');
+            checkoutBtn.disabled = false;
+            
+            let cartHTML = '';
+            let subtotal = 0;
+            
+            cart.forEach((item, index) => {
+                const product = products[item.id];
+                if (!product) return;
+                
+                const itemTotal = product.price * item.quantity;
+                subtotal += itemTotal;
+                
+                cartHTML += `
+                    <div class="cart-item" data-product-id="${item.id}">
+                        <div class="row align-items-center">
+                            <div class="col-3 col-md-2">
+                                <img src="${product.image}" alt="${product.title}" class="cart-item-image img-fluid">
+                            </div>
+                            <div class="col-9 col-md-5">
+                                <h5 class="mb-1">${product.title}</h5>
+                                <p class="text-muted mb-0">${product.description.substring(0, 60)}...</p>
+                                <p class="mb-0 product-price">$${product.price.toLocaleString('es-CL')}</p>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="quantity-selector d-flex align-items-center">
+                                    <button class="btn btn-outline-secondary quantity-btn decrease-quantity" data-index="${index}">-</button>
+                                    <input type="number" class="quantity-input form-control text-center mx-2" value="${item.quantity}" min="1" style="width: 60px;" data-index="${index}">
+                                    <button class="btn btn-outline-secondary quantity-btn increase-quantity" data-index="${index}">+</button>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-2 text-end">
+                                <p class="mb-1 fw-bold item-total">$${itemTotal.toLocaleString('es-CL')}</p>
+                                <button class="btn btn-sm btn-outline-danger remove-item" data-index="${index}">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartContainer.innerHTML = cartHTML;
+            updateSummary(subtotal);
+            
+            // Agregar event listeners a los botones
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    updateQuantity(index, -1);
+                });
+            });
+            
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    updateQuantity(index, 1);
+                });
+            });
+            
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('change', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    const newQuantity = parseInt(this.value);
+                    if (newQuantity > 0) {
+                        setQuantity(index, newQuantity);
+                    } else {
+                        this.value = 1;
+                        setQuantity(index, 1);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    removeFromCart(index);
+                });
+            });
+        }
+
+        function updateQuantity(index, change) {
+            const cart = getCart();
+            if (cart[index]) {
+                cart[index].quantity += change;
+                
+                if (cart[index].quantity < 1) {
+                    cart[index].quantity = 1;
+                }
+                
+                saveCart(cart);
+                renderCartItems();
+            }
+        }
+
+        function setQuantity(index, quantity) {
+            const cart = getCart();
+            if (cart[index]) {
+                cart[index].quantity = quantity;
+                saveCart(cart);
+                renderCartItems();
+            }
+        }
+
+        function removeFromCart(index) {
+            const cart = getCart();
+            if (cart[index]) {
+                cart.splice(index, 1);
+                saveCart(cart);
+                renderCartItems();
+            }
+        }
+
+        function updateSummary(subtotal) {
+            const shipping = subtotal > 0 ? 3000 : 0;
+            const total = subtotal + shipping;
+            
+            document.getElementById('subtotal').textContent = `$${subtotal.toLocaleString('es-CL')}`;
+            document.getElementById('shipping').textContent = `$${shipping.toLocaleString('es-CL')}`;
+            document.getElementById('total').textContent = `$${total.toLocaleString('es-CL')}`;
+        }
+
+        // Inicializar el carrito cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            renderCartItems();
+            
+            // Event listener para el botón de checkout
+            document.getElementById('checkout-btn').addEventListener('click', function() {
+                alert('¡Gracias por tu compra! En un futuro esto te llevará a completar tu pedido.');
+            });
+        });
+    </script>
+</body>
+</html>
