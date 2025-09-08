@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+
+    
+        
+
+    <!-- Navbar -->
+
+    
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Pastelería Mil Sabores</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="productos.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nosotros.html">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link cart-link" href="#">
+                            Carrito <span class="cart-count">(0)</span>
+                        </a>
+                    </li>
+                    <!-- Botón hamburguesa para menú de usuario -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="navbar-toggler-icon"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                            <li><a class="dropdown-item" href="registro.html">📝 Registro</a></li>
+                            <li><a class="dropdown-item" href="inicio_sesion.html">🔐 Iniciar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+            <!--Formulario de Registro-->
+    <div class="loginUsuario  mt-5">
+            <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center mb-4">Formulario de Registro</h2>
+                <form id ="registroForm">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre completo</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre completo">
+                        <div id="nombreHelp" class="form-text">Este será tu nombre visible en tu cuenta.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="correo" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" id="correo" placeholder="ejemplo@correo.com">
+                        <div id="correoHelp" class="form-text">Nunca compartiremos tu correo electrónico con nadie más.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="floatingPassword" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Ingresa tu contraseña">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="confirmarPassword" class="form-label">Confirmar Contraseña</label>
+                        <input type="password" class="form-control" id="confirmarPassword" placeholder="Confirma tu contraseña">
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label for= "telefono" class="form-label">Teléfono</label>
+
+                        <input type="tel" class="form-control" id="telefono" placeholder="Ingresa tu número de teléfono (Opcional)">
+                    </div>
+    
+    
+  </div>
+</div>
+
+
+
+
+                    <!--region y comuna-->
+
+
+
+                        <span id="alerta"></span>
+
+                        
+
+    
+
+                    <div class="text-center mb-3 mt-4">
+                        <button type="submit" class="btn btn-primary"
+                          style="--bs-btn-padding-y: .50rem; --bs-btn-padding-x: 2rem; --bs-btn-font-size: 1.2rem;">
+                            Registrarse
+                        </button>
+                    </div>
+
+                </form>
+                </div>
+            </div>
+        </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="registro.js"></script>
+</body>
+</html>

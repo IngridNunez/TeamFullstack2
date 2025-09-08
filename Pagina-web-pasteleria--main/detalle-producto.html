@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Producto - Pastelería Mil Sabores</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #d63384;
+            --secondary-color: #6f42c1;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            padding-top: 76px;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        .brand-text, h1, h2, h3, h4, h5 {
+            font-family: 'Pacifico', cursive;
+            color: var(--primary-color);
+        }
+        
+        .custom-navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+        }
+        
+        .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+        
+        .cart-count {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            padding: 0.1rem 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        .breadcrumb-section {
+            background-color: var(--light-color);
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--primary-color);
+        }
+        
+        .quantity-btn {
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .size-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 20px;
+            padding: 0.5rem 1.5rem;
+        }
+        
+        .btn-primary:hover {
+            background-color: #b02a6e;
+            border-color: #b02a6e;
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .footer {
+            background-color: var(--light-color);
+            padding: 3rem 0;
+        }
+        
+        .social-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        
+        .social-link:hover {
+            text-decoration: underline;
+            color: #b02a6e;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #495057;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .product-image img {
+            max-height: 500px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Pastelería Mil Sabores</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="productos.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nosotros.html">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link cart-link" href="#">
+                            Carrito <span class="cart-count">(0)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-section py-3 mt-5">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="productos.html">Productos</a></li>
+                    <li class="breadcrumb-item active" id="product-category-breadcrumb">Categoría</li>
+                    <li class="breadcrumb-item active" id="product-name-breadcrumb">Producto</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Product Detail -->
+    <section class="product-detail py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="product-image text-center mb-4">
+                        <img id="main-product-image" src="" alt="Imagen del producto" class="img-fluid rounded">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h1 class="product-title" id="product-title"></h1>
+                    <p class="product-price h4 text-primary" id="product-price"></p>
+                    <div class="product-description my-4" id="product-description"></div>
+                    
+                    <div class="customization-options mb-4">
+                        <div class="size-options mb-3">
+                            <h5>Tamaño:</h5>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-outline-primary size-btn active" data-size="pequeno">Pequeño</button>
+                                <button type="button" class="btn btn-outline-primary size-btn" data-size="mediano">Mediano</button>
+                                <button type="button" class="btn btn-outline-primary size-btn" data-size="grande">Grande</button>
+                            </div>
+                        </div>
+                        
+                        <div class="message-option mb-3">
+                            <h5>Mensaje personalizado (opcional):</h5>
+                            <textarea class="form-control message-input" placeholder="Escribe tu mensaje aquí (máx. 50 caracteres)" maxlength="50" rows="2"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="add-to-cart-section mb-4">
+                        <div class="d-flex align-items-center">
+                            <div class="quantity-selector me-3">
+                                <button class="btn btn-outline-secondary quantity-btn" id="decrease-quantity">-</button>
+                                <input type="number" class="quantity-input form-control text-center mx-2" id="product-quantity" value="1" min="1" style="width: 60px;">
+                                <button class="btn btn-outline-secondary quantity-btn" id="increase-quantity">+</button>
+                            </div>
+                            <button class="btn btn-primary btn-lg" id="add-to-cart-detail">Añadir al carrito</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-details">
+                        <div class="detail-item mb-2">
+                            <strong>Categoría:</strong> <span id="product-category"></span>
+                        </div>
+                        <div class="detail-item mb-2">
+                            <strong>Código:</strong> <span id="product-code"></span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Disponibilidad:</strong> <span class="text-success">En stock</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4>Pastelería Mil Sabores</h4>
+                    <p>50 años endulzando momentos especiales con las mejores recetas tradicionales y modernas de la repostería chilena.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">Twitter</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4>Contacto</h4>
+                    <p>Av. Dulce 1234, Santiago Centro<br>
+                    Región Metropolitana, Chile</p>
+                    <p>Teléfono: +56 2 2345 6789<br>
+                    Email: info@pasteleriamilsabores.cl</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="copyright">&copy; 2023 Pastelería Mil Sabores. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obtener parámetros de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('product');
+            
+            // Base de datos de productos (simulada)
+            const products = {
+                'torta-chocolate': {
+                    title: 'Torta de Chocolate',
+                    price: '$15.000',
+                    description: 'Deliciosa torta de chocolate con relleno de crema y cubierta de ganache. Perfecta para los amantes del chocolate, con un sabor intenso y textura suave que se derrite en la boca.',
+                    image: 'img/images2.jpeg',
+                    category: 'Tortas Cuadradas / Tradicional',
+                    code: 'CHOCO-001'
+                },
+                'torta-frutal': {
+                    title: 'Torta Frutal',
+                    price: '$18.000',
+                    description: 'Torta esponjosa con crema y decorada con variedad de frutas frescas de la estación. Una opción refrescante y colorida para cualquier celebración.',
+                    image: 'img/images12.jpeg',
+                    category: 'Tortas Circulares / Tradicional',
+                    code: 'FRUT-002'
+                },
+                'red-velvet': {
+                    title: 'Torta Red Velvet',
+                    price: '$20.000',
+                    description: 'Clásica torta roja con sabor a vainilla y chocolate, cubierta con frosting de queso crema. Su distintivo color y sabor la hacen irresistible.',
+                    image: 'img/images5.jpeg',
+                    category: 'Tortas Circulares / Especiales',
+                    code: 'REDV-003'
+                },
+                'torta-sin-azucar': {
+                    title: 'Torta Sin Azúcar',
+                    price: '$16.500',
+                    description: 'Exquisita torta endulzada naturalmente, ideal para personas con restricciones de azúcar. Disfruta del sabor sin preocupaciones.',
+                    image: 'img/images8.jpeg',
+                    category: 'Tortas Cuadradas / Sin Azúcar',
+                    code: 'SA-004'
+                },
+                'torta-sin-gluten': {
+                    title: 'Torta Sin Gluten',
+                    price: '$19.000',
+                    description: 'Deliciosa opción para celíacos, elaborada con harinas alternativas y mismo sabor exquisito. Todos pueden disfrutarla.',
+                    image: 'img/images4.jpeg',
+                    category: 'Tortas Circulares / Sin Gluten',
+                    code: 'SG-005'
+                },
+                'torta-vegana': {
+                    title: 'Torta Vegana',
+                    price: '$17.500',
+                    description: 'Elaborada sin productos de origen animal, pero con todo el sabor de una torta tradicional. Cruelty-free y deliciosa.',
+                    image: 'img/images7.jpeg',
+                    category: 'Tortas Circulares / Vegana',
+                    code: 'VEG-006'
+                },
+                'cheesecake': {
+                    title: 'Cheesecake Individual',
+                    price: '$5.000',
+                    description: 'Porción individual de cheesecake con base de galleta y topping de frutos rojos. Cremoso y con el balance perfecto de dulzura.',
+                    image: 'img/images13.jpeg',
+                    category: 'Postres Individuales',
+                    code: 'CHK-007'
+                },
+                'brownie': {
+                    title: 'Brownie de Chocolate',
+                    price: '$4.500',
+                    description: 'Brownie intenso de chocolate con nueces, disponible en porción individual o familiar. Perfecto para los amantes del chocolate intenso.',
+                    image: 'img/images15.jpeg',
+                    category: 'Postres Individuales',
+                    code: 'BRW-008'
+                },
+                'torta-personalizada': {
+                    title: 'Torta Personalizada',
+                    price: '$25.000+',
+                    description: 'Creamos la torta de tus sueños para tu ocasión especial. Consultar por diseños y precios según complejidad.',
+                    image: 'img/images14.jpeg',
+                    category: 'Tortas Especiales',
+                    code: 'CUST-009'
+                },
+                'torta-tres-leches': {
+                    title: 'Torta Tres Leches',
+                    price: '$16.000',
+                    description: 'Clásica torta bañada en mezcla de tres leches y decorada con merengue o crema chantillí. Húmeda y deliciosamente dulce.',
+                    image: 'img/images10.jpeg',
+                    category: 'Tortas Cuadradas / Tradicional',
+                    code: '3LECH-010'
+                },
+                'torta-zanahoria': {
+                    title: 'Torta de Zanahoria',
+                    price: '$17.000',
+                    description: 'Húmeda torta de zanahoria con especias, nueces y cubierta de frosting de queso crema. Un clásico que nunca pasa de moda.',
+                    image: 'img/images16.jpeg',
+                    category: 'Tortas Circulares / Tradicional',
+                    code: 'ZAN-011'
+                },
+                'tiramisu': {
+                    title: 'Tiramisú Individual',
+                    price: '$6.000',
+                    description: 'Clásico postre italiano en porción individual, con café, cacao y queso mascarpone. Elegante y delicioso.',
+                    image: 'img/images18.jpeg',
+                    category: 'Postres Individuales',
+                    code: 'TIR-012'
+                }
+            };
+            
+            // Mostrar información del producto
+            if (productId && products[productId]) {
+                const product = products[productId];
+                
+                document.getElementById('product-title').textContent = product.title;
+                document.getElementById('product-price').textContent = product.price;
+                document.getElementById('product-description').textContent = product.description;
+                document.getElementById('main-product-image').src = product.image;
+                document.getElementById('main-product-image').alt = product.title;
+                document.getElementById('product-category').textContent = product.category;
+                document.getElementById('product-code').textContent = product.code;
+                
+                // Actualizar breadcrumb
+                document.getElementById('product-category-breadcrumb').textContent = product.category.split(' / ')[0];
+                document.getElementById('product-name-breadcrumb').textContent = product.title;
+                
+                // Actualizar título de la página
+                document.title = `${product.title} - Pastelería Mil Sabores`;
+            } else {
+                // Producto no encontrado
+                document.getElementById('product-title').textContent = 'Producto no encontrado';
+                document.getElementById('product-description').textContent = 'El producto que buscas no está disponible.';
+            }
+            
+            // Funcionalidad de los botones de tamaño
+            const sizeButtons = document.querySelectorAll('.size-btn');
+            sizeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    sizeButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Funcionalidad de los botones de cantidad
+            const decreaseBtn = document.getElementById('decrease-quantity');
+            const increaseBtn = document.getElementById('increase-quantity');
+            const quantityInput = document.getElementById('product-quantity');
+            
+            decreaseBtn.addEventListener('click', function() {
+                if (parseInt(quantityInput.value) > 1) {
+                    quantityInput.value = parseInt(quantityInput.value) - 1;
+                }
+            });
+            
+            increaseBtn.addEventListener('click', function() {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+            });
+            
+            // Botón añadir al carrito
+            const addToCartBtn = document.getElementById('add-to-cart-detail');
+            addToCartBtn.addEventListener('click', function() {
+                const selectedSize = document.querySelector('.size-btn.active').getAttribute('data-size');
+                const quantity = parseInt(quantityInput.value);
+                const message = document.querySelector('.message-input').value;
+                
+                alert(`¡Producto añadido al carrito!\n${quantity} x ${document.getElementById('product-title').textContent}\nTamaño: ${selectedSize}\n${message ? 'Mensaje: ' + message : ''}`);
+                
+                // Actualizar contador del carrito
+                const cartCount = document.querySelector('.cart-count');
+                const currentCount = parseInt(cartCount.textContent.replace(/[()]/g, ''));
+                cartCount.textContent = `(${currentCount + quantity})`;
+            });
+        });
+    </script>
+</body>
+</html>

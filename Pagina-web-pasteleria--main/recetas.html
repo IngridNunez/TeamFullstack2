@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recetas - Pastelería</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Container para el contenido visible -->
+    <div class="container mt-4">
+        <span id="receta"></span>      <!-- ✅ Dentro del container Bootstrap -->
+    </div>
+
+    <!-- Container para todas las recetas ocultas -->
+    <div class="recetas-ocultas ">
+        <!-- Recetas ocultas -->
+        <div id="receta-red-velvet" style="display: none;">
+            <div class="receta-card">
+                <h2 class="text-center">Receta de Torta Red Velvet</h2>
+            
+                <img src="img/images1.jpeg" alt="Torta Red Velvet" class="receta-imagen">
+                
+                <div class="ingredientes">
+                    <h3 class="receta-subtitulo">📝 Ingredientes:</h3>
+                    <div style="text-align: justify;">
+                        <p>• 2 tazas de harina</p>
+                        <p>• 1 taza de azúcar</p>
+                        <p>• 1/2 taza de mantequilla</p>
+                        <p>• 2 huevos</p>
+                        <p>• Colorante rojo</p>
+                    </div>
+                </div>
+                
+                <h3 class="receta-subtitulo">👩‍🍳 Preparación:</h3>
+                <div style="text-align: justify;">
+                    <p>1. Precalentar el horno a 180°C.</p>
+                    <p>2. Mezclar los ingredientes secos en un tazón.</p>
+                    <p>3. Batir los ingredientes húmedos en otro tazón.</p>
+                    <p>4. Combinar ambas mezclas y agregar colorante rojo.</p>
+                    <p>5. Verter en un molde y hornear por 30 minutos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="receta-chocolate-torta" style="display: none;">
+            <div class="receta-card">
+                <h2 class="text-center">Receta de Torta de Chocolate</h2>
+
+                <img src="img/images2.jpeg" alt="Torta de Chocolate" class="receta-imagen">
+            </div>
+            <div class="ingredientes">
+                <h3 class="receta-subtitulo">📝 Ingredientes:</h3>
+                <div style="text-align: center;">
+                    <p>• 200g de chocolate negro</p>
+                    <p>• 1 taza de harina</p>
+                    <p>• 1/2 taza de mantequilla</p>
+                    <p>• 3 huevos</p>
+                    <p>• 1 taza de azúcar</p>
+                </div>
+            </div>
+            <h3 class="receta-subtitulo">👩‍🍳 Preparación:</h3>
+            <div style="text-align: center;">
+                <p>1. Precalentar el horno a 180°C.</p>
+                <p>2. Derretir el chocolate y dejar enfriar.</p>
+                <p>3. Batir la mantequilla con el azúcar hasta obtener una mezcla cremosa.</p>
+                <p>4. Agregar los huevos uno a uno, mezclando bien después de cada adición.</p>
+                <p>5. Incorporar el chocolate derretido y mezclar.</p>
+                <p>6. Verter en un molde y hornear por 25 minutos.</p>
+            </div>
+        </div>
+
+        <div id="receta-tres-leches" style="display: none;">
+            <div class="receta-card">
+                <h2 class="text-center">Receta de Torta de Tres Leches</h2>
+
+                <img src="img/images3.jpeg" alt="Torta de Tres Leches" class="receta-imagen">
+            
+                <div class="ingredientes">
+                    <h3 class="receta-subtitulo">📝 Ingredientes:</h3>
+                    
+                    <div style="text-align: justify;">
+                        <p>• 1 taza de harina</p>
+                        <p>• 1 lata de leche condensada</p>
+                        <p>• 1 lata de leche evaporada</p>
+                        <p>• 1 taza de crema de leche</p>
+                        <p>• 3 huevos</p>
+                    </div>
+                </div>
+                <h3 class="receta-subtitulo">👩‍🍳 Preparación:</h3>
+                
+                <div style="text-align: justify;">
+                    <p>1. Precalentar el horno a 180°C.</p>
+                    <p>2. Preparar un bizcocho esponjoso y hornear.</p>
+                    <p>3. Mezclar las tres leches en un tazón.</p>
+                    <p>4. Una vez que el bizcocho esté frío, perforar con un tenedor.</p>
+                    <p>5. Verter la mezcla de leches sobre el bizcocho.</p>
+                    <p>6. Dejar reposar en el refrigerador por varias horas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="receta-frambuesa" style="display: none;">
+            <div class="receta-card">
+                <h2 class="text-center">Receta de Torta de Frambuesa</h2>
+                
+                <img src="img/images4.jpeg" alt="Torta de Frambuesa" class="receta-imagen">
+                <p>Una torta fresca y esponjosa rellena y decorada con frambuesas naturales y crema, perfecta para quienes disfrutan de un postre frutal y elegante.</p>
+            
+                <div class="ingredientes">
+                    <h3 class="receta-subtitulo">📝 Ingredientes:</h3>
+                    
+                    <div style="text-align: justify;">
+                        <p>• 2 tazas de harina</p>
+                        <p>• 1 taza de azúcar</p>
+                        <p>• 1 taza de mantequilla</p>
+                        <p>• 4 huevos</p>
+                        <p>• 1 taza de leche</p>
+                        <p>• 2 tazas de frambuesas frescas</p>
+                        <p>• 1 taza de crema para batir</p>
+                        <p>• 1 cucharadita de polvo de hornear</p>
+                    </div>
+                </div>
+                
+                <h3 class="receta-subtitulo">👩‍🍳 Preparación:</h3>
+                
+                <div style="text-align: justify;">
+                    <p>1. Precalentar el horno a 180°C y engrasar un molde para torta.</p>
+                    <p>2. Batir la mantequilla con el azúcar hasta que esté cremosa.</p>
+                    <p>3. Agregar los huevos uno a uno, batiendo bien después de cada adición.</p>
+                    <p>4. Incorporar la harina y el polvo de hornear alternando con la leche.</p>
+                    <p>5. Verter la mezcla en el molde y hornear por 35-40 minutos.</p>
+                    <p>6. Dejar enfriar, cortar en capas y rellenar con crema batida y frambuesas.</p>
+                    <p>7. Decorar la parte superior con más crema y frambuesas frescas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="receta-arandano" style="display: none;">
+            <div class="receta-card">
+                <h2 class="text-center">Receta de Torta de Arándano</h2>
+                
+                
+                <img src="img/images5.jpeg" alt="Torta de Arándano" class="receta-imagen">
+                <p>Torta húmeda y esponjosa con arándanos frescos, rellena y decorada con crema y más arándanos, ideal para un postre antioxidante y delicioso.</p>
+            
+                <div class="ingredientes">
+                    <h3 class="receta-subtitulo">📝 Ingredientes:</h3>
+                    
+                    <div style="text-align: justify;">
+                        <p>• 2 tazas de harina</p>
+                        <p>• 1 taza de azúcar</p>
+                        <p>• 1 taza de mantequilla</p>
+                        <p>• 4 huevos</p>
+                        <p>• 1 taza de leche</p>
+                        <p>• 2 tazas de arándanos frescos</p>
+                        <p>• 1 taza de crema para batir</p>
+                        <p>• 1 cucharadita de polvo de hornear</p>
+                    </div>
+                </div>
+                <h3 class="receta-subtitulo">👩‍🍳 Preparación:</h3>
+                
+                <div style="text-align: justify;">
+                    <p>1. Precalentar el horno a 180°C y engrasar un molde para torta.</p>
+                    <p>2. Batir la mantequilla con el azúcar hasta que esté cremosa.</p>
+                    <p>3. Agregar los huevos uno a uno, batiendo bien después de cada adición.</p>
+                    <p>4. Incorporar la harina y el polvo de hornear alternando con la leche.</p>
+                    <p>5. Agregar los arándanos frescos a la mezcla.</p>
+                    <p>6. Verter la mezcla en el molde y hornear por 35-40 minutos.</p>
+                    <p>7. Dejar enfriar, cortar en capas y rellenar con crema batida y arándanos.</p>
+                    <p>8. Decorar la parte superior con más crema y arándanos frescos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="receta-oreo" style="display: none;">
+            <div class="receta-card">
+                <h2 class="text-center">Receta de Torta de Oreo</h2>
+               
+                
+                <img src="img/images6.jpeg" alt="Torta de Oreo" class="receta-imagen">
+                <p>Una torta de chocolate con galletas Oreo trituradas en la masa, rellena y decorada con crema y más Oreos, perfecta para los fanáticos de las galletas.</p>
+            
+                <div class="ingredientes">
+                    <h3 class="receta-subtitulo">📝 Ingredientes:</h3>
+                    <div style="text-align: justify;">
+                        <p>• 2 tazas de harina</p>
+                        <p>• 1 taza de azúcar</p>
+                        <p>• 1 taza de mantequilla</p>
+                        <p>• 4 huevos</p>
+                        <p>• 1 taza de leche</p>
+                        <p>• 1 taza de galletas Oreo trituradas</p>
+                        <p>• 1 taza de crema para batir</p>
+                        <p>• 1/2 taza de cacao en polvo</p>
+                        <p>• 1 cucharadita de polvo de hornear</p>
+                    </div>
+                </div>
+                <h3 class="receta-subtitulo">👩‍🍳 Preparación:</h3>
+                <div style="text-align: justify;">
+                    <p>1. Precalentar el horno a 180°C y engrasar un molde para torta.</p>
+                    <p>2. Batir la mantequilla con el azúcar hasta que esté cremosa.</p>
+                    <p>3. Agregar los huevos uno a uno, batiendo bien después de cada adición.</p>
+                    <p>4. Incorporar la harina, el cacao y el polvo de hornear alternando con la leche.</p>
+                    <p>5. Agregar las galletas Oreo trituradas a la mezcla.</p>
+                    <p>6. Verter la mezcla en el molde y hornear por 35-40 minutos.</p>
+                    <p>7. Dejar enfriar, cortar en capas y rellenar con crema batida y más Oreos.</p>
+                    <p>8. Decorar la parte superior con crema y galletas Oreo trituradas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="recetas.js"></script>
+</body>
+</html>
